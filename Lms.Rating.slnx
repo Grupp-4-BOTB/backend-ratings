@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Rating.Api/Rating.Api.csproj" />
+  <Project Path="Rating.Application/Rating.Application.csproj" />
+  <Project Path="Rating.Domain/Rating.Domain.csproj" />
+  <Project Path="Rating.Infrastructure/Rating.Infrastructure.csproj" />
+</Solution>
