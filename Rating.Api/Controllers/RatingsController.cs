@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Rating.Application.Dtos;
 using Rating.Application.Interfaces;
 
 namespace Rating.Api.Controllers;
@@ -15,18 +16,23 @@ public class RatingsController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateRating(int courseId)
+    public async Task<IActionResult> CreateRating(int courseId, CreateRatingDto dto, CancellationToken ct)
     {
-        return Ok($"Rating endpoint works for course {courseId}");
+        try
+        {
+            await _ratingService.CreateRating(courseId, dto, ct);
+            return Created();
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet("summary")]
-    public async Task<IActionResult> GetRatingSummary(
-        int courseId,
-        CancellationToken ct)
+    public async Task<IActionResult> GetRatingSummary(int courseId, CancellationToken ct)
     {
         var result = await _ratingService.GetRatingSummary(courseId, ct);
-
         return Ok(result);
     }
 }
