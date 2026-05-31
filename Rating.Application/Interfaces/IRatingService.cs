@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
-namespace Rating.Application.Interfaces
+using Rating.Application.Dtos;
+
+namespace Rating.Application.Interfaces;
+
+public interface IRatingService
 {
-    public interface IRatingService
-    {
-    }
+    Task CreateRating(int courseId, CreateRatingDto dto, CancellationToken ct);
+    Task<RatingSummaryDto> GetRatingSummary(int courseId, CancellationToken ct);
 }

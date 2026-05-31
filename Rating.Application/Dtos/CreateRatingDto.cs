@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Rating.Application.Dtos
 {
-    internal class CreateRatingDto
+    public class CreateRatingDto
     {
+        public int StudentId { get; set; }
+        public int Rating { get; set; }
     }
 }

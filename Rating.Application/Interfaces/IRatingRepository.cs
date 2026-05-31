@@ -8,7 +8,7 @@ namespace Rating.Application.Interfaces
     public interface IRatingRepository
     {
         Task AddRatingAsync(RatingEntity ratingEntity, CancellationToken ct);
-        Task<RatingEntity> GetRatingByCourseIdAsync(int studentId, CancellationToken ct);
+        Task<List<RatingEntity>> GetRatingByCourseIdAsync(int courseId, CancellationToken ct);
 
     }
 }
