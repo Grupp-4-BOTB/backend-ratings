@@ -2,9 +2,9 @@
 
 namespace Rating.Application.Dtos
 {
-    public class CreateRatingDto
+    public class RatingRowDto
     {
-        public int StudentId { get; set; }
-        public int Rating { get; set; }
+        public int Stars { get; set; }
+        public int Percentage { get; set; }
     }
 }
