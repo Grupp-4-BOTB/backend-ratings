@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
+using Rating.Application.Interfaces;
 
-namespace Rating.Application.Services
+namespace Rating.Application.Services;
+
+public class RatingService : IRatingService
 {
-    internal class RatingService
-    {
-    }
 }

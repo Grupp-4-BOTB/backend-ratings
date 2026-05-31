@@ -6,6 +6,6 @@ namespace Rating.Domain.Entities
     {
         public int StudentId { get; set; }
         public int CourseId { get; set; }
-        public int Rating { get; set; } = 0;
+        public int Rating { get; set; }
     }
 }

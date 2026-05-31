@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Rating.Application.Interfaces;
 
 namespace Rating.Api.Controllers;
 
@@ -6,26 +7,26 @@ namespace Rating.Api.Controllers;
 [ApiController]
 public class RatingsController : ControllerBase
 {
+    private readonly IRatingService _ratingService;
+
+    public RatingsController(IRatingService ratingService)
+    {
+        _ratingService = ratingService;
+    }
+
     [HttpPost]
     public IActionResult CreateRating(int courseId)
     {
         return Ok($"Rating endpoint works for course {courseId}");
     }
+
     [HttpGet("summary")]
-    public IActionResult GetRatingSummary(int courseId)
+    public async Task<IActionResult> GetRatingSummary(
+        int courseId,
+        CancellationToken ct)
     {
-        return Ok(new
-        {
-            averageRating = 0,
-            totalReviews = 0,
-            ratings = new[]
-            {
-                    new { stars = 5, percentage = 0 },
-                    new { stars = 4, percentage = 0 },
-                    new { stars = 3, percentage = 0 },
-                    new { stars = 2, percentage = 0 },
-                    new { stars = 1, percentage = 0 }
-            }
-        });
+        var result = await _ratingService.GetRatingSummary(courseId, ct);
+
+        return Ok(result);
     }
 }
