@@ -3,7 +3,6 @@ using Rating.Application.Interfaces;
 using Rating.Application.Services;
 using Rating.Infrastructure.Data;
 using Rating.Infrastructure.Repositories;
-using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +15,16 @@ builder.Services.AddDbContext<RatingDbContext>(options =>
 builder.Services.AddScoped<IRatingService, RatingService>();
 builder.Services.AddScoped<IRatingRepository, RatingRepository>();
 
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new()
+    {
+        Title = "Ratings API",
+        Version = "v1",
+        Description = "API for handling course ratings and rating summaries.",
+    });
+});
 
 builder.Services.AddCors(options =>
 {
@@ -33,11 +41,8 @@ var app = builder.Build();
 
 app.UseCors("AllowFrontend");
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

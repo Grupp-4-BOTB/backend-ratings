@@ -3,4 +3,5 @@
   <Project Path="Rating.Application/Rating.Application.csproj" />
   <Project Path="Rating.Domain/Rating.Domain.csproj" />
   <Project Path="Rating.Infrastructure/Rating.Infrastructure.csproj" />
+  <Project Path="Rating.Tests/Rating.Tests.csproj" Id="158760fa-a84b-4526-bb80-f771ddad9878" />
 </Solution>
