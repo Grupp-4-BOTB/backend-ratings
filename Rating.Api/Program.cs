@@ -31,7 +31,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>
     {
         policy
-            .WithOrigins("http://localhost:3000", "https://lms-shiko.vercel.app")
+            .WithOrigins("http://localhost:3000", "https://lms-shiko.vercel.app", "http://192.168.0.26:3000")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
